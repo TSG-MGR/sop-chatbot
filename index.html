@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SOP Chat</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; max-width: 600px; margin: auto; }
+    #messages { height: 300px; overflow-y: auto; border: 1px solid #ccc; padding: 10px; background: #f9f9f9; margin-bottom: 10px; }
+    input { width: 80%; padding: 10px; }
+    button { padding: 10px; }
+  </style>
+</head>
+<body>
+  <h2>Ask SOPBot 🤖</h2>
+  <div id="messages"></div>
+  <input type="text" id="userInput" placeholder="Type your question..." />
+  <button onclick="sendMessage()">Send</button>
+
+  <script>
+    const messagesDiv = document.getElementById('messages');
+
+    function sendMessage() {
+      const input = document.getElementById('userInput');
+      const userText = input.value;
+      if (!userText) return;
+      appendMessage('You', userText);
+      input.value = '';
+
+      // Simulated response
+      setTimeout(() => {
+        appendMessage('SOPBot', `I’ll look into: "${userText}". (Real answers coming soon!)`);
+      }, 600);
+    }
+
+    function appendMessage(sender, text) {
+      const msg = document.createElement('div');
+      msg.innerHTML = `<strong>${sender}:</strong> ${text}`;
+      messagesDiv.appendChild(msg);
+      messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    }
+  </script>
+</body>
+</html>
